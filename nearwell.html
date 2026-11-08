@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NearWell | AI Marketing for Greenwich and Tarrytown Businesses</title>
+  <title>NearWell | Websites & Local Marketing for Business Owners</title>
   <meta
     name="description"
-    content="NearWell helps Greenwich and Tarrytown businesses launch adaptive websites, local campaigns, and smarter customer messaging."
+    content="Website design and local campaign strategy focused on store visits, bookings, and qualified inquiries for Greenwich, New Canaan, and Tarrytown businesses."
   />
   <link rel="canonical" href="https://dannyyavo.com/nearwell/" />
-  <meta property="og:title" content="NearWell | AI Marketing for Greenwich and Tarrytown Businesses" />
+  <meta property="og:title" content="NearWell | Websites & Local Marketing for Business Owners" />
   <meta
     property="og:description"
-    content="A premium static marketing site for NearWell, built for local businesses across Greenwich, CT and Tarrytown, NY."
+    content="Work directly with Daniel Yavonditte on a defined website and local marketing scope built around your business objectives."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dannyyavo.com/nearwell/" />
@@ -24,7 +24,9 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="styles.css?v=005cd593ef3d" />
-  <link rel="stylesheet" href="theme.css?v=019ff571faa8" />
+  <link rel="stylesheet" href="theme.css?v=07ec2effbeae" />
+  <link rel="stylesheet" href="hyperscroller.css?v=f66083304341">
+  <script src="hyperscroller.js?v=1e840f6e31b4" defer></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -54,13 +56,13 @@
     }
   </script>
 </head>
-<body data-page="home">
+<body data-page="home" data-auto-popup="true">
   <header class="site-header">
     <a class="brand" href="nearwell.html" aria-label="NearWell home">
       <span class="brand-mark">N</span>
       <span class="brand-text">
         <strong>NearWell</strong>
-        <small>Greenwich + Tarrytown</small>
+        <small>Greenwich · New Canaan · Tarrytown</small>
       </span>
     </a>
 
@@ -70,64 +72,131 @@
 
     <nav class="main-nav">
       <a href="#how-it-works">How It Works</a>
-      <a href="#features">For your business</a>
-      <a href="#who">Who we are</a>
+      <a href="#features">Business outcomes</a>
+      <a href="#who">Why NearWell</a>
       <a href="#pricing">Pricing</a>
     </nav>
 
-    <a class="button button-outline" href="demo.html">Request a Demo</a>
+    <a class="button button-outline" href="demo.html">Plan your project</a>
   </header>
 
   <div class="mobile-nav" id="mobileNav" hidden>
     <a href="#how-it-works">How It Works</a>
-    <a href="#features">For your business</a>
-      <a href="#who">Who we are</a>
+    <a href="#features">Business outcomes</a>
+      <a href="#who">Why NearWell</a>
     <a href="#pricing">Pricing</a>
-    <a href="demo.html">Request a Demo</a>
+    <a href="demo.html">Plan your project</a>
   </div>
 
   <main>
     <section class="hero section">
       <div class="hero-copy">
-        <span class="eyebrow">Good businesses. Good neighbors.</span>
-        <h1>More locals.<br>More regulars.<br><em>More you.</em></h1>
-        <p class="lead">You make the neighborhood what it is. We help more people find you—with thoughtful websites and local marketing for Greenwich and Tarrytown.</p>
-        <div class="hero-actions"><a class="button" href="demo.html">Let’s talk about your business <span aria-hidden="true">↗</span></a></div>
+        <span class="eyebrow">Websites &amp; local marketing for owner-operated businesses</span>
+        <h1>More customer traffic.<br>More repeat business.<br><em>Stronger sales.</em></h1>
+        <p class="lead">I build websites and develop local campaigns designed to bring more customers through your door, give them a reason to return, and turn that activity into sales. The work connects your offer, customer experience, and marketing to a clear commercial objective.</p>
+        <div class="hero-actions"><button class="button open-popup" type="button">Get started with NearWell <span aria-hidden="true">↗</span></button></div>
         <a class="hero-footnote" href="#neighborhoods">Rooted in Greenwich, CT &amp; Tarrytown, NY <span aria-hidden="true">↓</span></a>
       </div>
       <figure class="hero-photo">
         <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="Warm pendant lights and a menu board inside a café" fetchpriority="high" width="1000" height="1200">
-        <figcaption>A little more bustle. A few more familiar faces.</figcaption>
-        <span class="photo-stamp" aria-hidden="true">Made for<br><em>Main Street.</em></span>
+        <figcaption>A clear offer. An easier path from discovery to purchase.</figcaption>
+        <span class="photo-stamp" aria-hidden="true">Built for<br><em>local business.</em></span>
       </figure>
     </section>
-    <div class="neighborhood-strip"><span>For the places that make a place.</span><span>Coffee shops</span><span>Salons &amp; studios</span><span>Restaurants</span><span>And your next big idea</span></div>
+    <div class="neighborhood-strip"><span>For local business owners</span><span>Coffee shops</span><span>Salons &amp; studios</span><span>Restaurants</span><span>Service businesses</span></div>
+
+    <section class="section hyperscroller" id="mini-hyperscroller" aria-labelledby="hyperscroller-heading">
+      <div class="hyperscroller-intro">
+        <div><span class="eyebrow">Interactive creative / A NearWell concept</span><h2 id="hyperscroller-heading">Give your customers<br><em>something to engage with.</em></h2></div>
+        <p>Showcase the products people come to you for. This scroll-responsive concept makes everyday items part of an interactive experience.</p>
+      </div>
+      <div class="hyperscroller-stage" data-hyperscroller>
+        <div class="hyperscroller-stage-top"><span>THE EVERYDAY, IN A DIFFERENT ORBIT.</span><button class="motion-toggle" type="button" aria-pressed="false" aria-label="Pause scroll animation">Pause motion <span aria-hidden="true">Ⅱ</span></button></div>
+        <div class="hyperscroller-orbit" aria-hidden="true"></div>
+        <div class="hyperscroller-axis" aria-hidden="true"></div>
+        <div class="floating-product product-coffee" data-spin="coffee" role="img" aria-label="A floating takeaway coffee cup">
+          <svg viewBox="0 0 250 290" aria-hidden="true" focusable="false">
+            <defs><linearGradient id="cup-paper" x1="0" x2="1"><stop stop-color="#ded8c7"/><stop offset=".4" stop-color="#fffdf5"/><stop offset="1" stop-color="#c9c1ad"/></linearGradient><linearGradient id="cup-sleeve" x1="0" x2="1"><stop stop-color="#b07b50"/><stop offset=".5" stop-color="#d3a97a"/><stop offset="1" stop-color="#9b6842"/></linearGradient><linearGradient id="cup-lid" x2=".2" y2="1"><stop stop-color="#f7f2e8"/><stop offset="1" stop-color="#b7b4a7"/></linearGradient></defs>
+            <path d="M68 54 Q61 23 75 13 M112 42 Q97 20 111 4 M151 46 Q164 26 151 12" fill="none" stroke="#d9e2c3" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+            <path d="M45 78 L70 258 Q125 279 180 258 L204 78Z" fill="url(#cup-paper)" stroke="#a79e8c"/>
+            <path d="M55 132 L66 212 Q125 232 186 212 L197 132 Q127 151 55 132" fill="url(#cup-sleeve)"/>
+            <path d="M65 146 L74 205 M75 149 L83 208 M85 152 L92 211 M164 152 L157 214 M175 149 L168 211 M185 146 L177 208" stroke="#8a603f" stroke-width="1" opacity=".25"/>
+            <ellipse cx="124" cy="77" rx="86" ry="23" fill="#b4b1a5"/>
+            <path d="M38 66 Q125 91 212 66 L213 82 Q124 111 36 82Z" fill="url(#cup-lid)" stroke="#a8a799"/>
+            <ellipse cx="125" cy="65" rx="87" ry="23" fill="#e9e5d9"/>
+            <path d="M54 60 L63 42 Q126 20 188 43 L197 60 Q125 82 54 60" fill="url(#cup-lid)" stroke="#c1bcad"/>
+            <ellipse cx="126" cy="43" rx="63" ry="16" fill="#f2efe4"/>
+            <rect x="151" y="38" width="22" height="6" rx="3" fill="#676e5a" transform="rotate(7 151 38)"/>
+            <circle cx="126" cy="178" r="27" fill="#2d493b"/><text x="126" y="188" fill="#f7f3eb" text-anchor="middle" font-family="Georgia,serif" font-size="33">N</text>
+          </svg>
+        </div>
+        <div class="floating-product product-pizza" data-spin="pizza" role="img" aria-label="A floating slice of pepperoni pizza">
+          <svg viewBox="0 0 280 280" aria-hidden="true" focusable="false">
+            <defs><linearGradient id="pizza-cheese" x2=".5" y2="1"><stop stop-color="#ffe4a2"/><stop offset="1" stop-color="#e8a83e"/></linearGradient><linearGradient id="pizza-crust" x2="0" y2="1"><stop stop-color="#dfaf66"/><stop offset="1" stop-color="#9f5e29"/></linearGradient></defs>
+            <path d="M40 62 Q143 6 246 64 L148 256 Q142 266 135 253Z" fill="#94552d"/>
+            <path d="M39 51 Q143 0 246 53 L142 246Z" fill="url(#pizza-cheese)" stroke="#c18a39" stroke-width="2"/>
+            <path d="M51 70 Q143 29 231 70 L143 236Z" fill="#cb6634"/>
+            <path d="M59 73 Q143 37 222 72 L144 231Z" fill="url(#pizza-cheese)"/>
+            <path d="M42 54 Q140 -1 244 56" fill="none" stroke="url(#pizza-crust)" stroke-width="27" stroke-linecap="round"/>
+            <path d="M48 47 Q143 3 237 49" fill="none" stroke="#f3ce8e" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+            <g fill="#ac4430" stroke="#853126" stroke-width="2"><ellipse cx="100" cy="97" rx="22" ry="19"/><ellipse cx="178" cy="91" rx="23" ry="20"/><ellipse cx="141" cy="153" rx="21" ry="19"/></g>
+            <g fill="#e58c55"><circle cx="93" cy="92" r="3"/><circle cx="108" cy="102" r="3"/><circle cx="172" cy="85" r="3"/><circle cx="186" cy="98" r="3"/><circle cx="134" cy="150" r="3"/><circle cx="148" cy="159" r="3"/></g>
+            <g fill="#65743a"><path d="M128 85q16 -12 20 2q-16 10 -20 -2"/><path d="M163 126q17 -4 16 10q-19 3 -16 -10"/><path d="M120 183q14 -10 18 1q-11 11 -18 -1"/></g>
+            <g fill="#af722c" opacity=".45"><circle cx="93" cy="134" r="3"/><circle cx="156" cy="193" r="3"/><circle cx="130" cy="111" r="4"/><circle cx="186" cy="119" r="3"/></g>
+          </svg>
+        </div>
+        <div class="floating-product product-muffin" data-spin="muffin" role="img" aria-label="A floating blueberry muffin">
+          <svg viewBox="0 0 270 270" aria-hidden="true" focusable="false">
+            <defs><linearGradient id="muffin-top" x2=".3" y2="1"><stop stop-color="#efd098"/><stop offset=".5" stop-color="#c98d4b"/><stop offset="1" stop-color="#925d30"/></linearGradient><linearGradient id="muffin-paper" x1="0" x2="1"><stop stop-color="#8f6242"/><stop offset=".4" stop-color="#d3ad76"/><stop offset="1" stop-color="#88613f"/></linearGradient></defs>
+            <path d="M49 133 L68 234 Q133 258 203 234 L224 133Z" fill="url(#muffin-paper)" stroke="#886446"/>
+            <path d="M60 148 L77 235 M78 152 L91 240 M98 156 L106 244 M118 156 L122 247 M139 156 L138 248 M161 154 L154 246 M182 150 L172 241 M204 144 L189 237" fill="none" stroke="#74583c" stroke-width="3" opacity=".45"/>
+            <path d="M45 151 C14 144 26 111 42 103 C34 77 54 59 77 63 C83 27 119 24 138 43 C161 17 195 38 198 62 C230 57 250 83 237 109 C263 129 235 164 216 158 Q135 185 45 151Z" fill="url(#muffin-top)" stroke="#ac733b" stroke-width="2"/>
+            <path d="M66 76 Q101 52 123 72 M148 56 Q177 43 190 78 M43 119 Q57 100 84 114 M108 128 Q138 99 164 126" fill="none" stroke="#f3d6a4" stroke-width="7" opacity=".45" stroke-linecap="round"/>
+            <g fill="#424454"><ellipse cx="84" cy="87" rx="10" ry="8" transform="rotate(-20 84 87)"/><ellipse cx="159" cy="79" rx="9" ry="10"/><ellipse cx="197" cy="117" rx="11" ry="8"/><ellipse cx="122" cy="136" rx="10" ry="8"/><ellipse cx="61" cy="133" rx="8" ry="7"/></g>
+            <g fill="#74748a"><circle cx="82" cy="84" r="3"/><circle cx="157" cy="76" r="3"/><circle cx="195" cy="114" r="3"/><circle cx="120" cy="133" r="3"/></g>
+            <g fill="#f5dbb2"><circle cx="111" cy="63" r="3"/><circle cx="179" cy="106" r="3"/><circle cx="98" cy="112" r="2"/><circle cx="146" cy="104" r="3"/><circle cx="151" cy="151" r="2"/></g>
+          </svg>
+        </div>
+        <div class="hyperscroller-shadow shadow-coffee" aria-hidden="true"></div><div class="hyperscroller-shadow shadow-pizza" aria-hidden="true"></div><div class="hyperscroller-shadow shadow-muffin" aria-hidden="true"></div>
+        <div class="hyperscroller-stage-bottom"><span>COFFEE / PIZZA / BAKERY</span><span class="scroll-instruction">SCROLL UP OR DOWN TO ROTATE <span aria-hidden="true">↕</span></span></div>
+      </div>
+      <div class="hyperscroller-caption"><div><h3>New Gen-AI Mini Hyperscroller</h3><p>Patented by Danny Yavonditte</p></div><p>Scroll-driven motion. A new perspective on your products.</p></div>
+    </section>
     <section class="section business-section" id="features">
-      <div class="section-heading"><span class="eyebrow">Small business. Full of life.</span><h2>Your work is personal.<br>Your marketing should be, too.</h2><p>The first coffee of the day. A fresh cut. Friday night’s usual.<br>Give people a reason to find you—and come back.</p></div>
+      <div class="section-heading"><span class="eyebrow">Business objectives</span><h2>Marketing tied to<br>the actions that matter.</h2><p>Customer acquisition is only the first step. Your marketing should increase relevant customer traffic, encourage repeat visits and bookings, and support sales growth. We start with the point in that process your business needs to improve.</p></div>
       <div class="business-grid">
-        <article class="business-story"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Pour-over coffee being prepared at a café counter" loading="lazy" width="800" height="1000"><span class="mini-label">Coffee shops &amp; cafés</span><h3>Become their morning ritual.</h3><p>A welcoming website and timely offers that turn a nearby search into a daily stop.</p></article>
-        <article class="business-story"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="A bright hair salon with styling chairs and mirrors" loading="lazy" width="800" height="1000"><span class="mini-label">Salons &amp; studios</span><h3>Make room for new regulars.</h3><p>Show your style, introduce your services, and make the next appointment easy to book.</p></article>
-        <article class="business-story"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Freshly baked pizza beside tomatoes and herbs" loading="lazy" width="800" height="1000"><span class="mini-label">Restaurants &amp; pizza shops</span><h3>Be the answer to “what’s for dinner?”</h3><p>Put your menu, specials, and neighborhood personality in front of hungry locals.</p></article>
+        <article class="business-story"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Pour-over coffee being prepared at a café counter" loading="lazy" width="800" height="1000"><span class="mini-label">Coffee shops &amp; cafés</span><h3>Support more in-store visits.</h3><p>Make menus, opening hours, directions, and timely offers easy to find. Give nearby customers a specific reason to visit, particularly during the periods you want to strengthen.</p></article>
+        <article class="business-story"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="A bright hair salon with styling chairs and mirrors" loading="lazy" width="800" height="1000"><span class="mini-label">Salons &amp; studios</span><h3>Build repeat appointments.</h3><p>Present your services clearly and simplify the booking process. Develop rebooking messages and relevant offers that give existing clients a reason to schedule their next appointment.</p></article>
+        <article class="business-story"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Freshly baked pizza beside tomatoes and herbs" loading="lazy" width="800" height="1000"><span class="mini-label">Restaurants &amp; pizza shops</span><h3>Turn demand into sales.</h3><p>Connect compelling menus, timely offers, and clear ordering or reservation links. Make it easier for first-time interest and returning customers to become completed purchases.</p></article>
       </div>
       <p class="image-note">Neighborhood inspiration · photography from Unsplash; businesses pictured are illustrative.</p>
     </section>
     <section class="section process-section" id="how-it-works">
-      <div class="section-heading"><span class="eyebrow">A little help goes a long way</span><h2>You run the shop.<br>We help spread the word.</h2><p>Practical marketing, with AI doing the busywork and your business at the center.</p><a class="text-link" href="demo.html">See what we could do together ↗</a></div>
+      <div class="section-heading"><span class="eyebrow">Scope &amp; delivery</span><h2>A defined objective.<br>A practical execution plan.</h2><p>Website design, service-page copy, campaign concepts, and audience-specific offers. We agree on the deliverables, budget, and success measures before work begins.</p><a class="text-link" href="demo.html">Define your project scope ↗</a></div>
       <div class="process-list">
-        <article><span>01</span><div><h3>Start with a conversation.</h3><p>Tell us what you do, who you serve, and what you’d like to see more of.</p></div></article>
-        <article><span>02</span><div><h3>Give your business a proper home online.</h3><p>A website with your voice, your offers, and a clear next step for every visitor.</p></div></article>
-        <article><span>03</span><div><h3>Reach the right neighbors.</h3><p>Local campaigns and useful recommendations to keep your marketing moving.</p></div></article>
+        <article><span>01</span><div><h3>Identify the conversion problem.</h3><p>Review your offer, target customer, current website, and desired action. Establish what is working and where customers may be dropping off.</p></div></article>
+        <article><span>02</span><div><h3>Build the assets that address it.</h3><p>Develop the agreed website pages, messaging, and campaign materials. You review the work before anything is published.</p></div></article>
+        <article><span>03</span><div><h3>Evaluate against the objective.</h3><p>Agree on how to assess response using available booking, inquiry, sales, or campaign data. Tracking setup and ongoing reporting are scoped explicitly, not assumed.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section process-section" id="results">
+      <div class="section-heading"><span class="eyebrow">Outcomes &amp; accountability</span><h2>What can this<br>do for your business?</h2><p>The objective is a stronger customer pipeline: attract the right people, earn their repeat business, and improve sales opportunities. We define a baseline and the measures your business can track. Results depend on your offer, market conditions, and execution.</p></div>
+      <div class="process-list">
+        <article><span>01</span><div><h3>Increase customer traffic</h3><p>Use location-specific offers and clear visit information to support in-store demand. Direction clicks indicate intent; offer redemptions or your own store data provide stronger evidence of visits.</p></div></article>
+        <article><span>02</span><div><h3>Increase repeat business</h3><p>Develop reasons for customers to return: seasonal offers, follow-up messaging, and clear rebooking opportunities. Assess repeat purchases, returning-customer bookings, or offer redemptions where your systems provide that data.</p></div></article>
+        <article><span>03</span><div><h3>Support increased sales</h3><p>More relevant traffic and repeat customers create opportunities for sales growth. Use completed orders, paid appointments, and sales data to assess progress; clicks alone do not establish revenue or prove a campaign caused the change.</p></div></article>
       </div>
     </section>
     <section class="section neighborhood-section" id="neighborhoods">
-      <div class="section-heading"><span class="eyebrow">Our corner of the world</span><h2>Three towns.<br>So many good neighbors.</h2><p>From Tarrytown on the Hudson to Greenwich and New Canaan, NearWell is built around the businesses close to home.</p><div class="town-links"><a href="https://www.openstreetmap.org/?mlat=41.0762&amp;mlon=-73.8587#map=14/41.0762/-73.8587" target="_blank" rel="noopener">Tarrytown, NY ↗</a><a href="https://www.openstreetmap.org/?mlat=41.0265&amp;mlon=-73.6285#map=14/41.0265/-73.6285" target="_blank" rel="noopener">Greenwich, CT ↗</a><a href="https://www.openstreetmap.org/?mlat=41.1468&amp;mlon=-73.4948#map=14/41.1468/-73.4948" target="_blank" rel="noopener">New Canaan, CT ↗</a></div></div>
+      <div class="section-heading"><span class="eyebrow">Local market focus</span><h2>Local context.<br>Relevant campaigns.</h2><p>Serving businesses in Greenwich, New Canaan, and Tarrytown. Messaging should reflect your service area, customer routines, and actual capacity—not a generic national audience.</p><div class="town-links"><a href="https://www.openstreetmap.org/?mlat=41.0762&amp;mlon=-73.8587#map=14/41.0762/-73.8587" target="_blank" rel="noopener">Tarrytown, NY ↗</a><a href="https://www.openstreetmap.org/?mlat=41.0265&amp;mlon=-73.6285#map=14/41.0265/-73.6285" target="_blank" rel="noopener">Greenwich, CT ↗</a><a href="https://www.openstreetmap.org/?mlat=41.1468&amp;mlon=-73.4948#map=14/41.1468/-73.4948" target="_blank" rel="noopener">New Canaan, CT ↗</a></div></div>
       <div class="real-map"><iframe title="Interactive map of Greenwich, New Canaan, and Tarrytown" src="map.html" loading="lazy"></iframe><div class="map-caption"><span>Hudson River → Long Island Sound</span><a href="https://www.openstreetmap.org/#map=11/41.06/-73.745" target="_blank" rel="noopener">Explore the map ↗</a></div></div>
     </section>
 
     <section class="section demo-showcase">
       <div class="section-heading">
         <span class="eyebrow">Try it out · illustrative campaign</span>
-        <h2>Same coffee. A different invitation.</h2>
+        <h2>Adapt the offer to the customer segment.</h2>
       </div>
 
       <div class="dashboard-shell">
@@ -170,12 +239,12 @@
     </section>
 
     <section class="section founder-section" id="who">
-      <div class="founder-title"><span class="eyebrow">Who’s behind NearWell</span><h2>Hi, I’m Daniel.<br><em>I started NearWell.</em></h2></div>
+      <div class="founder-title"><span class="eyebrow">Who’s behind NearWell</span><h2>Work directly<br>with <em>your builder.</em></h2></div>
       <div class="founder-copy">
         <h3>Daniel Yavonditte</h3>
-        <span class="founder-role">Founder, NearWell · 12th grader at St. Luke’s School</span>
-        <p>I’m Daniel Yavonditte, a 12th grader at St. Luke’s School from Greenwich, Connecticut. I started NearWell to help local businesses with their websites and marketing.</p>
-        <p>My goal is simple: make it easier for the businesses that give a neighborhood its character to reach the people around them.</p>
+        <span class="founder-role">Founder, NearWell · Greenwich, Connecticut</span>
+        <p>I’m Daniel Yavonditte, founder of NearWell. I work directly with business owners on their websites and marketing, from understanding the brief to reviewing the finished work.</p>
+        <p>You have one point of contact and a defined scope. I use AI to support research, drafting, and production, with human review and your approval guiding the final output. Read my bio for my education and background.</p>
         <a class="text-link" href="index.html">Read Daniel’s bio ↗</a>
       </div>
     </section>
@@ -183,27 +252,28 @@
     <section class="section" id="pricing">
       <div class="section-heading">
         <span class="eyebrow">Pricing</span>
-        <h2>A little support.<br>Room to grow.</h2>
+        <h2>Choose the scope<br>your business needs.</h2>
       </div>
 
+      <p class="image-note">Confirm deliverables, tracking requirements, and any third-party costs before starting. These plans describe services, not guaranteed business results.</p>
       <div class="pricing-grid">
         <article class="price-card">
           <span class="plan-name">Starter</span>
           <div class="price"><strong>$99</strong><span>/month</span></div>
-          <p>Perfect for one local landing page and a clear starting campaign.</p>
+          <p>A focused scope for one local landing page and one audience concept.</p>
           <ul>
-            <li>Adaptive homepage messaging</li>
+            <li>Homepage copy and calls to action</li>
             <li>One audience playbook</li>
-            <li>Monthly AI recommendations</li>
+            <li>Monthly content recommendations</li>
           </ul>
           <a class="button button-ghost" href="demo.html">Choose Starter</a>
         </article>
 
         <article class="price-card price-card-featured">
-          <span class="badge">For your next chapter</span>
+          <span class="badge">Ongoing marketing support</span>
           <span class="plan-name">Growth</span>
           <div class="price"><strong>$299</strong><span>/month</span></div>
-          <p>Designed for businesses ready to run ongoing campaigns across both towns.</p>
+          <p>For businesses developing campaign concepts for multiple local customer segments.</p>
           <ul>
             <li>Everything in Starter</li>
             <li>Multiple customer segments</li>
@@ -215,11 +285,11 @@
         <article class="price-card">
           <span class="plan-name">Pro</span>
           <div class="price"><strong>$699</strong><span>/month</span></div>
-          <p>For established brands that want richer automation and more reporting depth.</p>
+          <p>For businesses that need a broader campaign plan and a defined measurement approach.</p>
           <ul>
             <li>Everything in Growth</li>
-            <li>Advanced audience insights</li>
-            <li>Expanded reporting direction</li>
+            <li>Audience research and recommendations</li>
+            <li>Measurement and reporting plan</li>
           </ul>
           <a class="button button-ghost" href="demo.html">Choose Pro</a>
         </article>
@@ -228,15 +298,15 @@
 
     <section class="section final-cta">
       <div>
-        <span class="eyebrow">Your next chapter starts here</span>
-        <h2>Let’s make you<br>the neighborhood favorite.</h2>
+        <span class="eyebrow">Start with a business objective</span>
+        <h2>What needs to perform<br>better in your business?</h2>
         <p>
-          Tell us about your business. We’ll explore what a better website and a little local attention could do for you.
+          Identify your priority: more store visits, more bookings, or more qualified inquiries. Use the project brief to describe your audience, current obstacles, and budget.
         </p>
       </div>
       <div class="cta-side">
-        <a class="button button-light" href="demo.html">Request a Demo</a>
-        <button class="button button-outline-light open-popup" type="button">Start the Questionnaire</button>
+        <a class="button button-light" href="demo.html">Plan your project</a>
+        <button class="button button-outline-light open-popup" type="button">Get started with NearWell</button>
       </div>
     </section>
   </main>
@@ -247,23 +317,23 @@
         <span class="brand-mark">N</span>
         <span class="brand-text">
           <strong>NearWell</strong>
-          <small>Greenwich + Tarrytown</small>
+          <small>Greenwich · New Canaan · Tarrytown</small>
         </span>
       </a>
-      <p>Adaptive websites and local marketing strategy for neighborhood businesses.</p>
+      <p>Website design, conversion-focused messaging, and local campaign strategy.</p>
     </div>
 
     <div class="footer-links">
       <div>
         <span>Product</span>
-        <a href="#features">For your business</a>
-      <a href="#who">Who we are</a>
+        <a href="#features">Business outcomes</a>
+      <a href="#who">Why NearWell</a>
         <a href="#pricing">Pricing</a>
       </div>
       <div>
         <span>Company</span>
         <a href="#how-it-works">How It Works</a>
-        <a href="demo.html">Request a Demo</a>
+        <a href="demo.html">Plan your project</a>
       </div>
       <div>
         <span>Legal</span>
@@ -282,12 +352,12 @@
     <div class="lead-modal__backdrop"></div>
     <div class="lead-modal__panel" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
       <button class="modal-close" type="button" aria-label="Close popup">&times;</button>
-      <span class="eyebrow">Quick Start</span>
-      <h2 id="leadModalTitle">Tell us where you want local growth first.</h2>
-      <p>Complete the common questionnaire and we will tailor the demo around your market.</p>
+      <span class="eyebrow">Your next stage of growth</span>
+      <h2 id="leadModalTitle">Get started with NearWell.</h2>
+      <p>What would make the biggest difference: more customer traffic, stronger repeat business, or increased sales? Outline your priorities below.</p>
 
       <form class="capture-form" data-form-kind="popup">
-        <input type="hidden" name="formTitle" value="5 Second Lead Popup" />
+        <input type="hidden" name="formTitle" value="NearWell growth questionnaire" />
         <div class="form-grid compact-form">
           <label>
             <span>Name</span>
@@ -315,16 +385,16 @@
               <option value="">Select one</option>
               <option>Greenwich, CT</option>
               <option>Tarrytown, NY</option>
-              <option>Both markets</option>
+              <option>New Canaan, CT</option><option>Multiple markets</option>
             </select>
           </label>
         </div>
         <label>
           <span>What do you want help with first?</span>
-          <textarea name="message" rows="3" placeholder="More leads, better messaging, stronger local offers..."></textarea>
+          <textarea name="message" rows="3" placeholder="More foot traffic, repeat purchases, appointment bookings, or higher sales. What is your priority?"></textarea>
         </label>
-        <button class="button" type="submit">Save My Demo Request</button>
-        <p class="form-status" aria-live="polite"></p>
+        <button class="button" type="submit">Save my project brief</button>
+        <p class="form-status" aria-live="polite">Your answers are saved in this browser only and are not sent to NearWell.</p>
       </form>
     </div>
   </div>
@@ -338,6 +408,6 @@
     <option value="Home services business"></option>
   </datalist>
 
-  <script src="script.js?v=c63818bdfb23"></script>
+  <script src="script.js?v=bab04bdff275"></script>
 </body>
 </html>

@@ -1,6 +1,10 @@
 const STORAGE_KEY = "nearwellLeads";
-const POPUP_DISMISSED_KEY = "nearwellPopupDismissed";
-const POPUP_SUBMITTED_KEY = "nearwellPopupSubmitted";
+const POPUP_SESSION_KEY = "nearwell:lead-popup:session:v2";
+let popupAutoTimer;
+let popupCloseTimer;
+let popupPreviousFocus;
+let popupBackground = [];
+let popupSeenThisSession = false;
 
 const audienceContent = {
   commuters: {
@@ -228,6 +232,9 @@ function initializeBusinessSuggestions() {
 
 function persistLead(formData, source) {
   const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  if (!Array.isArray(existing)) {
+    throw new Error("Saved project briefs could not be read.");
+  }
   existing.push({
     source,
     submittedAt: new Date().toISOString(),
@@ -250,10 +257,13 @@ function attachFormHandlers() {
       const formData = readForm(form);
       const source = form.dataset.formKind || "unknown";
 
-      persistLead(formData, source);
-
-      if (source === "popup") {
-        localStorage.setItem(POPUP_SUBMITTED_KEY, "true");
+      try {
+        persistLead(formData, source);
+      } catch (error) {
+        if (status) {
+          status.textContent = "Your brief could not be saved on this device. Please copy your answers before leaving, or allow browser storage and try again.";
+        }
+        return;
       }
 
       form.reset();
@@ -265,25 +275,49 @@ function attachFormHandlers() {
       $all(".chip.is-selected").forEach((chip) => chip.classList.remove("is-selected"));
 
       if (status) {
-        status.textContent = "Saved locally. When you connect a live form service, these fields are ready to post.";
+        status.textContent = "Your brief was saved on this device. It has not been sent to NearWell.";
       }
 
       if (source === "popup") {
-        setTimeout(closeModal, 700);
+        window.clearTimeout(popupCloseTimer);
+        popupCloseTimer = window.setTimeout(closeModal, 2400);
       }
     });
   });
 }
 
-function openModal() {
+function rememberPopupSession() {
+  popupSeenThisSession = true;
+  try {
+    sessionStorage.setItem(POPUP_SESSION_KEY, "true");
+  } catch (error) {
+    // Closing and manual opening still work when browser storage is unavailable.
+  }
+}
+
+function openModal(launcher) {
   const modal = $("#leadModal");
   if (!modal) {
     return;
   }
 
+  window.clearTimeout(popupAutoTimer);
+  window.clearTimeout(popupCloseTimer);
+  rememberPopupSession();
+  if (modal.classList.contains("is-visible")) {
+    return;
+  }
+
+  popupPreviousFocus = launcher instanceof HTMLElement ? launcher : document.activeElement;
+  popupBackground = Array.from(document.body.children)
+    .filter((element) => element !== modal && !element.contains(modal))
+    .map((element) => ({ element, wasInert: element.inert }));
+  popupBackground.forEach(({ element }) => { element.inert = true; });
   modal.classList.add("is-visible");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+  modal.querySelector(".lead-modal__content")?.scrollTo(0, 0);
+  modal.querySelector(".modal-close")?.focus({ preventScroll: true });
 }
 
 function closeModal() {
@@ -292,9 +326,25 @@ function closeModal() {
     return;
   }
 
+  window.clearTimeout(popupAutoTimer);
+  window.clearTimeout(popupCloseTimer);
+  rememberPopupSession();
+  if (!modal.classList.contains("is-visible")) {
+    return;
+  }
+
+  popupBackground.forEach(({ element, wasInert }) => { element.inert = wasInert; });
+  popupBackground = [];
   modal.classList.remove("is-visible");
-  modal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
+  if (popupPreviousFocus?.isConnected && typeof popupPreviousFocus.focus === "function") {
+    popupPreviousFocus.focus({ preventScroll: true });
+  }
+  if (modal.contains(document.activeElement)) {
+    document.activeElement.blur();
+  }
+  modal.setAttribute("aria-hidden", "true");
+  popupPreviousFocus = null;
 }
 
 function initializePopup() {
@@ -303,29 +353,78 @@ function initializePopup() {
     return;
   }
 
-  const closeButton = $(".modal-close");
-  const backdrop = $(".lead-modal__backdrop");
+  const panel = modal.querySelector(".lead-modal__panel");
+  const closeButton = modal.querySelector(".modal-close");
   const launchers = $all(".open-popup");
+  if (!panel || !closeButton) {
+    return;
+  }
 
-  closeButton?.addEventListener("click", () => {
-    localStorage.setItem(POPUP_DISMISSED_KEY, "true");
-    closeModal();
+  // Keep the close control stationary while long questionnaires scroll below it.
+  if (!panel.querySelector(".lead-modal__content")) {
+    const content = document.createElement("div");
+    content.className = "lead-modal__content";
+    Array.from(panel.childNodes).forEach((node) => {
+      if (node !== closeButton) content.append(node);
+    });
+    panel.append(content);
+  }
+  panel.tabIndex = -1;
+
+  closeButton.addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (!panel.contains(event.target)) closeModal();
   });
 
-  backdrop?.addEventListener("click", () => {
-    localStorage.setItem(POPUP_DISMISSED_KEY, "true");
-    closeModal();
+  function getFocusableElements() {
+    return Array.from(panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+      .filter((element) => element.getClientRects().length > 0);
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (!modal.classList.contains("is-visible")) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = getFocusableElements();
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (!first) {
+      event.preventDefault();
+      panel.focus();
+    } else if (event.shiftKey && (document.activeElement === first || !panel.contains(document.activeElement))) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !panel.contains(document.activeElement))) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  document.addEventListener("focusin", (event) => {
+    if (modal.classList.contains("is-visible") && !panel.contains(event.target)) {
+      closeButton.focus({ preventScroll: true });
+    }
   });
 
   launchers.forEach((button) => {
-    button.addEventListener("click", openModal);
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openModal(button);
+    });
   });
 
-  const dismissed = localStorage.getItem(POPUP_DISMISSED_KEY) === "true";
-  const submitted = localStorage.getItem(POPUP_SUBMITTED_KEY) === "true";
+  try {
+    popupSeenThisSession = sessionStorage.getItem(POPUP_SESSION_KEY) === "true";
+  } catch (error) {
+    // A restricted browser can still show the questionnaire once on this page.
+  }
 
-  if (document.body.dataset.autoPopup === "true" && !dismissed && !submitted) {
-    window.setTimeout(openModal, 5000);
+  if (document.body.dataset.autoPopup === "true" && !popupSeenThisSession) {
+    popupAutoTimer = window.setTimeout(() => openModal(), 5000);
   }
 }
 

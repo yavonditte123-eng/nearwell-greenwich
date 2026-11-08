@@ -132,3 +132,70 @@ body[data-page="demo"] .form-status,.radius-help {font-size:.75rem;color:var(--t
 .demo-photo figcaption {font-family:"DM Serif Display",serif;font-size:1.3rem;margin-top:14px;}
 @media(max-width:900px) {body[data-page="demo"] .demo-grid {grid-template-columns:1fr;gap:52px;} .demo-photo {display:none;} body[data-page="demo"] .demo-hero {padding:42px 0;}}
 @media(max-width:480px) {body[data-page="demo"] .demo-grid h2 {font-size:2rem;} body[data-page="demo"] .demo-hero h1 {font-size:3rem;}}
+
+/* Centered questionnaire: the close control stays visible as the form scrolls. */
+.lead-modal {
+  z-index: 1000;
+  padding: 24px;
+  align-items: center;
+  justify-items: center;
+  overscroll-behavior: contain;
+}
+.lead-modal.is-visible { display: grid; }
+.lead-modal__backdrop { background: rgba(16, 28, 22, .7); }
+.lead-modal__panel {
+  display: flex;
+  flex-direction: column;
+  width: min(760px, 100%);
+  min-height: 0;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  margin: 0;
+  padding: 82px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, .3);
+}
+.lead-modal__content {
+  min-height: 0;
+  padding: 0 32px 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.lead-modal .modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0 0 3px;
+  border: 2px solid var(--green-deep);
+  border-radius: 50%;
+  background: var(--green-deep);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+}
+.lead-modal .modal-close:hover { background: #48634e; }
+body:is([data-page="home"], [data-page="demo"]) .lead-modal h2 {
+  max-width: none;
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+body:is([data-page="home"], [data-page="demo"]) .lead-modal .eyebrow { margin-bottom: 16px; }
+.lead-modal__content > p { color: var(--text-soft); }
+.lead-modal .form-status:not(:empty) { margin-top: 18px; font-size: .85rem; }
+@media(max-width:480px) {
+  .lead-modal { padding: 12px; }
+  .lead-modal__panel { max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); }
+  .lead-modal__content { padding: 0 20px 24px; }
+}
