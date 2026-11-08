@@ -24,7 +24,7 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="styles.css?v=005cd593ef3d" />
-  <link rel="stylesheet" href="theme.css?v=07ec2effbeae" />
+  <link rel="stylesheet" href="theme.css?v=928c19c1d4a9" />
   <link rel="stylesheet" href="hyperscroller.css?v=f66083304341">
   <script src="hyperscroller.js?v=1e840f6e31b4" defer></script>
   <script type="application/ld+json">
@@ -56,7 +56,7 @@
     }
   </script>
 </head>
-<body data-page="home" data-auto-popup="true">
+<body data-inquiry-email="nearwellct@gmail.com" data-page="home" data-auto-popup="true">
   <header class="site-header">
     <a class="brand" href="nearwell.html" aria-label="NearWell home">
       <span class="brand-mark">N</span>
@@ -373,7 +373,7 @@
           </label>
           <label>
             <span>Business type</span>
-            <input name="businessType" type="text" list="businessTypeList" required />
+            <input name="businessType" type="text" required />
           </label>
           <label>
             <span>Phone</span>
@@ -381,33 +381,20 @@
           </label>
           <label>
             <span>Primary market</span>
-            <select name="market" required>
-              <option value="">Select one</option>
-              <option>Greenwich, CT</option>
-              <option>Tarrytown, NY</option>
-              <option>New Canaan, CT</option><option>Multiple markets</option>
-            </select>
+            <input name="market" type="text" placeholder="Your town, service area, or target market" required />
           </label>
         </div>
         <label>
           <span>What do you want help with first?</span>
           <textarea name="message" rows="3" placeholder="More foot traffic, repeat purchases, appointment bookings, or higher sales. What is your priority?"></textarea>
         </label>
-        <button class="button" type="submit">Save my project brief</button>
-        <p class="form-status" aria-live="polite">Your answers are saved in this browser only and are not sent to NearWell.</p>
+        <button class="button" type="submit">Review &amp; email questionnaire</button>
+        <p class="form-status" aria-live="polite">Review your answers, then send them to Daniel using your email app.</p>
       </form>
     </div>
   </div>
 
-  <datalist id="businessTypeList">
-    <option value="Coffee shop"></option>
-    <option value="Restaurant"></option>
-    <option value="Fitness studio"></option>
-    <option value="Retail boutique"></option>
-    <option value="Dental practice"></option>
-    <option value="Home services business"></option>
-  </datalist>
 
-  <script src="script.js?v=bab04bdff275"></script>
+  <script src="script.js?v=d308fc87155c"></script>
 </body>
 </html>

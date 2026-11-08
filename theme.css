@@ -199,3 +199,19 @@ body:is([data-page="home"], [data-page="demo"]) .lead-modal .eyebrow { margin-bo
   .lead-modal__panel { max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); }
   .lead-modal__content { padding: 0 20px 24px; }
 }
+
+/* Questionnaire email handoff: keep the review visible until the visitor closes it. */
+.capture-form[hidden] { display: none !important; }
+.questionnaire-review { margin-top: 26px; }
+.questionnaire-review h3 { font-size: 1.8rem; line-height: 1.2; }
+.questionnaire-review > p { color: var(--text-soft); line-height: 1.7; }
+.questionnaire-review .questionnaire-volume { color: var(--green-deep); font-weight: 700; padding: 16px 18px; background: #e7ebdf; border-left: 3px solid var(--green); }
+.questionnaire-review details { margin: 22px 0; padding: 14px 0; border-block: 1px solid var(--line); }
+.questionnaire-review summary { cursor: pointer; font-weight: 500; }
+.questionnaire-review dl { margin-bottom: 0; }
+.questionnaire-review dt { margin-top: 15px; font-size: .75rem; font-weight: 700; color: var(--text-soft); }
+.questionnaire-review dd { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.questionnaire-review-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.questionnaire-edit { border: 0; background: none; color: var(--green-deep); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; padding: 12px 0; }
+.questionnaire-review .questionnaire-email-help { font-size: .8rem; overflow-wrap: anywhere; }
+.questionnaire-email-help a { text-decoration: underline; }

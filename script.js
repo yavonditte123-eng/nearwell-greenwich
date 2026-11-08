@@ -1,4 +1,3 @@
-const STORAGE_KEY = "nearwellLeads";
 const POPUP_SESSION_KEY = "nearwell:lead-popup:session:v2";
 let popupAutoTimer;
 let popupCloseTimer;
@@ -230,58 +229,92 @@ function initializeBusinessSuggestions() {
   });
 }
 
-function persistLead(formData, source) {
-  const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  if (!Array.isArray(existing)) {
-    throw new Error("Saved project briefs could not be read.");
-  }
-  existing.push({
-    source,
-    submittedAt: new Date().toISOString(),
-    ...formData
-  });
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+function readForm(form) {
+  return Object.fromEntries(new FormData(form).entries());
 }
 
-function readForm(form) {
-  const data = new FormData(form);
-  return Object.fromEntries(data.entries());
+function createQuestionnaireReview(form, answers, recipient) {
+  const labels = {
+    name: "Name", email: "Email", company: "Company", businessType: "Business type",
+    phone: "Phone", market: "Primary market", demographics: "Target customers",
+    radius: "Campaign radius (miles)", message: "Business priorities"
+  };
+  const fields = Object.entries(labels).filter(([key]) => String(answers[key] || "").trim());
+  const subject = `NearWell questionnaire — ${answers.company || answers.name || "New inquiry"}`.replace(/[\r\n]/g, " ").slice(0, 150);
+  const body = ["Hello Daniel,", "", "I would like to discuss my business with NearWell.", "",
+    ...fields.map(([key, label]) => `${label}: ${answers[key]}`), "", "Thank you,", answers.name || ""
+  ].join("\r\n");
+
+  const review = document.createElement("section");
+  review.className = "questionnaire-review";
+  review.tabIndex = -1;
+  review.setAttribute("aria-label", "Review and email your questionnaire");
+
+  const heading = document.createElement("h3");
+  heading.textContent = "Your questionnaire is ready to email.";
+  const notice = document.createElement("p");
+  notice.className = "questionnaire-volume";
+  notice.textContent = "Volume is high at the moment. We will reach out as soon as possible!";
+  const instruction = document.createElement("p");
+  instruction.textContent = "Send your questionnaire using the button below so Daniel can respond. Your email app will open with your answers ready; please press Send there to deliver your message.";
+  const details = document.createElement("details");
+  const summary = document.createElement("summary");
+  summary.textContent = "Review your answers";
+  const list = document.createElement("dl");
+  fields.forEach(([key, label]) => {
+    const term = document.createElement("dt");
+    term.textContent = label;
+    const value = document.createElement("dd");
+    value.textContent = answers[key];
+    list.append(term, value);
+  });
+  details.append(summary, list);
+  const actions = document.createElement("div");
+  actions.className = "questionnaire-review-actions";
+  const email = document.createElement("a");
+  email.className = "button questionnaire-email";
+  email.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  email.textContent = "Email my questionnaire ↗";
+  const edit = document.createElement("button");
+  edit.type = "button";
+  edit.className = "questionnaire-edit";
+  edit.textContent = "Edit answers";
+  edit.addEventListener("click", () => {
+    review.remove();
+    form.hidden = false;
+    form.querySelector('input:not([type="hidden"]), textarea')?.focus();
+  });
+  actions.append(email, edit);
+  const fallback = document.createElement("p");
+  fallback.className = "questionnaire-email-help";
+  fallback.append("No email app connected? Copy the address and your answers into your email service: ");
+  const address = document.createElement("a");
+  address.href = `mailto:${recipient}`;
+  address.textContent = recipient;
+  fallback.append(address);
+  review.append(heading, notice, instruction, details, actions, fallback);
+  return review;
 }
 
 function attachFormHandlers() {
   $all(".capture-form").forEach((form) => {
     const status = form.querySelector(".form-status");
-
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const formData = readForm(form);
-      const source = form.dataset.formKind || "unknown";
-
-      try {
-        persistLead(formData, source);
-      } catch (error) {
-        if (status) {
-          status.textContent = "Your brief could not be saved on this device. Please copy your answers before leaving, or allow browser storage and try again.";
-        }
+      form.querySelectorAll('input[type="text"], input[type="email"], textarea').forEach(field => {
+        field.value = field.value.trim();
+      });
+      if (!form.reportValidity()) return;
+      const recipient = document.body.dataset.inquiryEmail;
+      if (!recipient) {
+        if (status) status.textContent = "The email destination is being configured. Please keep your answers here for now.";
         return;
       }
-
-      form.reset();
-
-      if ($("#demographicsInput")) {
-        $("#demographicsInput").value = "";
-      }
-
-      $all(".chip.is-selected").forEach((chip) => chip.classList.remove("is-selected"));
-
-      if (status) {
-        status.textContent = "Your brief was saved on this device. It has not been sent to NearWell.";
-      }
-
-      if (source === "popup") {
-        window.clearTimeout(popupCloseTimer);
-        popupCloseTimer = window.setTimeout(closeModal, 2400);
-      }
+      const review = createQuestionnaireReview(form, readForm(form), recipient);
+      form.hidden = true;
+      form.after(review);
+      review.focus({ preventScroll: true });
+      review.scrollIntoView({ behavior: "instant", block: "nearest" });
     });
   });
 }
@@ -433,7 +466,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeAudienceTabs();
   initializeGeoMap();
   initializeDemographicChips();
-  initializeBusinessSuggestions();
   attachFormHandlers();
   initializePopup();
 });

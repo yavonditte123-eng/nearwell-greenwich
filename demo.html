@@ -24,7 +24,7 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="styles.css?v=005cd593ef3d" />
-  <link rel="stylesheet" href="theme.css?v=07ec2effbeae" />
+  <link rel="stylesheet" href="theme.css?v=928c19c1d4a9" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -38,7 +38,7 @@
     }
   </script>
 </head>
-<body data-page="demo">
+<body data-inquiry-email="nearwellct@gmail.com" data-page="demo">
   <header class="site-header">
     <a class="brand" href="nearwell.html" aria-label="NearWell home">
       <span class="brand-mark">N</span>
@@ -116,7 +116,6 @@
             <label class="full-width">
               <span>Business type</span>
               <input id="businessTypeInput" name="businessType" type="text" autocomplete="off" required />
-              <div class="suggestions" id="businessSuggestions" hidden></div>
             </label>
 
             <label class="full-width" for="demographicsInput">
@@ -142,12 +141,7 @@
             </label>
             <label>
               <span>Primary market</span>
-              <select name="market" required>
-                <option value="">Select one</option>
-                <option>Greenwich, CT</option>
-                <option>Tarrytown, NY</option>
-                <option>New Canaan, CT</option><option>Multiple markets</option>
-              </select>
+              <input name="market" type="text" placeholder="Your town, service area, or target market" required />
             </label>
             <label>
               <span>Geo-targeting radius (miles)</span>
@@ -160,8 +154,8 @@
           </div>
 
           <div class="form-actions">
-            <button class="button" type="submit">Save Project Brief</button>
-            <p class="form-status" aria-live="polite">Preview form: your details are saved in this browser only and are not sent.</p>
+            <button class="button" type="submit">Review &amp; email questionnaire</button>
+            <p class="form-status" aria-live="polite">Review your answers, then send them to Daniel using your email app.</p>
           </div>
         </form>
       </article>
@@ -210,11 +204,11 @@
     <div class="lead-modal__panel" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
       <button class="modal-close" type="button" aria-label="Close popup">&times;</button>
       <span class="eyebrow">Quick Start</span>
-      <h2 id="leadModalTitle">Get the common questionnaire started.</h2>
-      <p>Answer a few essentials now and continue the full demo request when you are ready.</p>
+      <h2 id="leadModalTitle">Get started with NearWell.</h2>
+      <p>Tell us about your business and the results you want to improve. Review your answers, then send your questionnaire to Daniel by email.</p>
 
       <form class="capture-form" data-form-kind="popup">
-        <input type="hidden" name="formTitle" value="5 Second Lead Popup" />
+        <input type="hidden" name="formTitle" value="NearWell growth questionnaire" />
         <div class="form-grid compact-form">
           <label>
             <span>Name</span>
@@ -230,7 +224,7 @@
           </label>
           <label>
             <span>Business type</span>
-            <input name="businessType" type="text" list="businessTypeList" required />
+            <input name="businessType" type="text" required />
           </label>
           <label>
             <span>Phone</span>
@@ -238,33 +232,20 @@
           </label>
           <label>
             <span>Primary market</span>
-            <select name="market" required>
-              <option value="">Select one</option>
-              <option>Greenwich, CT</option>
-              <option>Tarrytown, NY</option>
-              <option>New Canaan, CT</option><option>Multiple markets</option>
-            </select>
+            <input name="market" type="text" placeholder="Your town, service area, or target market" required />
           </label>
         </div>
         <label>
           <span>Top goal</span>
           <textarea name="message" rows="3" placeholder="Lead generation, promotions, messaging, geography..."></textarea>
         </label>
-        <button class="button" type="submit">Save My Project Brief</button>
+        <button class="button" type="submit">Review &amp; email questionnaire</button>
         <p class="form-status" aria-live="polite"></p>
       </form>
     </div>
   </div>
 
-  <datalist id="businessTypeList">
-    <option value="Coffee shop"></option>
-    <option value="Restaurant"></option>
-    <option value="Fitness studio"></option>
-    <option value="Retail boutique"></option>
-    <option value="Dental practice"></option>
-    <option value="Home services business"></option>
-  </datalist>
 
-  <script src="script.js?v=bab04bdff275"></script>
+  <script src="script.js?v=d308fc87155c"></script>
 </body>
 </html>
