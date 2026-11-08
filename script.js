@@ -1,9 +1,7 @@
-const POPUP_SESSION_KEY = "nearwell:lead-popup:session:v2";
 let popupAutoTimer;
 let popupCloseTimer;
 let popupPreviousFocus;
 let popupBackground = [];
-let popupSeenThisSession = false;
 
 const audienceContent = {
   commuters: {
@@ -319,15 +317,6 @@ function attachFormHandlers() {
   });
 }
 
-function rememberPopupSession() {
-  popupSeenThisSession = true;
-  try {
-    sessionStorage.setItem(POPUP_SESSION_KEY, "true");
-  } catch (error) {
-    // Closing and manual opening still work when browser storage is unavailable.
-  }
-}
-
 function openModal(launcher) {
   const modal = $("#leadModal");
   if (!modal) {
@@ -336,7 +325,6 @@ function openModal(launcher) {
 
   window.clearTimeout(popupAutoTimer);
   window.clearTimeout(popupCloseTimer);
-  rememberPopupSession();
   if (modal.classList.contains("is-visible")) {
     return;
   }
@@ -361,7 +349,6 @@ function closeModal() {
 
   window.clearTimeout(popupAutoTimer);
   window.clearTimeout(popupCloseTimer);
-  rememberPopupSession();
   if (!modal.classList.contains("is-visible")) {
     return;
   }
@@ -450,13 +437,8 @@ function initializePopup() {
     });
   });
 
-  try {
-    popupSeenThisSession = sessionStorage.getItem(POPUP_SESSION_KEY) === "true";
-  } catch (error) {
-    // A restricted browser can still show the questionnaire once on this page.
-  }
-
-  if (document.body.dataset.autoPopup === "true" && !popupSeenThisSession) {
+  // Each page load gets one automatic invitation; dismissal cancels it for this visit.
+  if (document.body.dataset.autoPopup === "true") {
     popupAutoTimer = window.setTimeout(() => openModal(), 5000);
   }
 }
